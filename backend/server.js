@@ -8,9 +8,31 @@ const cors = require('cors');
 const { HealthChatbot } = require('./chatbot');
 
 const app = express();
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
+
+// Database Connection with Hardened Options
+const connectDB = async () => {
+    try {
+        console.log("Attempting to connect to MongoDB...");
+        await mongoose.connect(process.env.MONGO_URI, {
+            serverSelectionTimeoutMS: 15000, // Timeout after 15s instead of 30s
+            socketTimeoutMS: 45000,
+        });
+        console.log("✅ MongoDB Connected Successfully");
+    } catch (err) {
+        console.error("❌ MongoDB Connection Error Details:");
+        console.error("Error Name:", err.name);
+        console.error("Error Message:", err.message);
+        // Do not exit, allow the server to stay up so we can see errors in logs
+    }
+};
+
+connectDB();
+
+// Handle connection events
+mongoose.connection.on('error', err => {
+    console.error('Mongoose runtime error:', err);
+});
+
 app.use(express.json());
 app.use(cors());
 app.use('/api/auth', authRoutes);

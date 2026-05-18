@@ -19,7 +19,9 @@ const userSchema = new mongoose.Schema({
     }
 
 }, {
-    timestamps: true
+    timestamps: true,
+    bufferCommands: false, // Disable buffering for this model
+    autoIndex: true
 });
 
 module.exports = mongoose.model('User', userSchema);
