@@ -591,3 +591,23 @@ body.dark .card-icon {
 .auth-card p {
     text-align: center;
 }
+
+/* Markdown Styling for Bot Messages */
+.message.bot h1,
+.message.bot h2,
+.message.bot h3{
+    margin-top:10px;
+    color:#4f46e5;
+}
+
+.message.bot ul{
+    padding-left:20px;
+}
+
+.message.bot li{
+    margin-bottom:6px;
+}
+
+.message.bot strong{
+    color:#111;
+}

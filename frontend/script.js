@@ -1,3 +1,5 @@
+import { marked } from "marked";
+
 const chatBox = document.getElementById("chat-box");
 const dashboardView = document.getElementById("dashboard-view");
 const chatView = document.getElementById("chat-view");
@@ -96,7 +98,7 @@ async function sendMessage() {
 
     chatBox.innerHTML += `
       <div class="message bot">
-        ${data.reply}
+        ${marked.parse(data.reply)}
       </div>
     `;
 
@@ -139,3 +141,12 @@ function logoutUser() {
   window.location.href = "login.html";
 
 }
+
+// Make functions available globally for HTML inline event handlers
+window.openChat = openChat;
+window.openDashboard = openDashboard;
+window.toggleSidebar = toggleSidebar;
+window.toggleDarkMode = toggleDarkMode;
+window.clearChat = clearChat;
+window.sendMessage = sendMessage;
+window.logoutUser = logoutUser;
