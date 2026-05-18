@@ -40,13 +40,11 @@ router.post('/signup', async (req, res) => {
         });
 
     } catch (error) {
-
-        console.log(error);
-
+        console.error("Login Error:", error);
         res.status(500).json({
-            message: 'Server Error'
+            message: 'Server Error',
+            error: error.message
         });
-
     }
 
 });
@@ -99,13 +97,11 @@ router.post('/login', async (req, res) => {
         });
 
     } catch (error) {
-
-        console.log(error);
-
+        console.error("Login Error:", error);
         res.status(500).json({
-            message: 'Server Error'
+            message: 'Server Error',
+            error: error.message
         });
-
     }
 
 });
