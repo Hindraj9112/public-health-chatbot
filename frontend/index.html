@@ -1,3 +1,8 @@
+<script>
+    if (!localStorage.getItem("token")) {
+        window.location.href = "login.html";
+    }
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +53,9 @@
             <div class="navbar-right">
                 <div class="profile-info">
                     <span class="user-name">👤 Profile</span>
-                    <button class="logout-btn">🚪</button>
+                    <button class="logout-btn" onclick="logoutUser()">
+                        🚪 Logout
+                    </button>
                 </div>
             </div>
         </div>

@@ -546,3 +546,48 @@ body.dark .card-icon {
         max-width: 90%;
     }
 }
+
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f4;
+}
+
+.auth-card {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-card h1 {
+    text-align: center;
+}
+
+.auth-card input {
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
+    font-size: 16px;
+}
+
+.auth-card button {
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #4f46e5;
+    color: white;
+    font-size: 16px;
+}
+
+.auth-card p {
+    text-align: center;
+}
