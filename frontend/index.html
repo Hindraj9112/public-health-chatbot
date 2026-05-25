@@ -79,7 +79,7 @@
             <!-- Hero Section -->
             <div class="hero-section">
                 <div class="hero-content">
-                    <h2>Welcome User ✨</h2>
+                    <h2 id="welcome-message">Welcome User ✨</h2>
                     <p>Your central portal for health tracking and AI assistance.</p>
 
                     <div class="cta-card">
@@ -99,22 +99,20 @@
                         <h4>AI Chatbot</h4>
                         <p style="font-size: 14px; color: var(--text-muted);">Instant AI health assistant for your queries.</p>
                     </div>
-                    <div class="card">
+                    <div class="card" onclick="openHealthInsightsModal()" style="cursor: pointer; border: 1px solid var(--border-color);">
                         <div class="card-icon">📊</div>
                         <h4>Health Insights</h4>
                         <ul>
-                            <li>• 0 Active Symptoms</li>
-                            <li>• Next checkup: None</li>
-                            <li>• Profile: 100% Setup</li>
+                            <li id="insight-symptoms">• 0 Active Symptoms</li>
+                            <li id="insight-checkup">• Next checkup: None</li>
+                            <li id="insight-profile">• Profile: 0% Setup</li>
                         </ul>
                     </div>
                     <div class="card">
                         <div class="card-icon">🔍</div>
                         <h4>Recent Queries</h4>
-                        <ul>
-                            <li>• Migraine cures</li>
-                            <li>• Flu prevention</li>
-                            <li>• Vitamin D sources</li>
+                        <ul id="recent-queries-list">
+                            <!-- Dynamically loaded recent queries -->
                         </ul>
                     </div>
                     <div class="card daily-tip">
@@ -147,6 +145,80 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- Health Insights Modal -->
+    <div class="modal-overlay" id="health-insights-modal" style="display: none;">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Track Health Insights</h3>
+                <button class="modal-close-btn" onclick="closeHealthInsightsModal()">✕</button>
+            </div>
+            
+            <div class="modal-tabs">
+                <button class="tab-btn active" id="btn-tab-symptoms" onclick="switchModalTab('tab-symptoms')">Symptoms</button>
+                <button class="tab-btn" id="btn-tab-checkup" onclick="switchModalTab('tab-checkup')">Checkup</button>
+                <button class="tab-btn" id="btn-tab-profile" onclick="switchModalTab('tab-profile')">Profile Setup</button>
+            </div>
+            
+            <div class="modal-content">
+                <!-- Symptoms Tab -->
+                <div class="tab-pane active" id="tab-symptoms">
+                    <p class="tab-desc">Add or remove symptoms you are currently experiencing.</p>
+                    <div class="symptom-input-group">
+                        <input type="text" id="new-symptom-input" placeholder="Enter a symptom (e.g. Headache)" />
+                        <button onclick="addSymptomFromInput()">Add</button>
+                    </div>
+                    <ul class="modal-symptom-list" id="modal-symptom-list">
+                        <!-- Dynamic list of symptoms with delete buttons -->
+                    </ul>
+                </div>
+                
+                <!-- Checkup Tab -->
+                <div class="tab-pane" id="tab-checkup" style="display: none;">
+                    <p class="tab-desc">Schedule your next doctor or wellness appointment.</p>
+                    <div class="form-group">
+                        <label for="checkup-date-input">Next Checkup Date / Time</label>
+                        <input type="text" id="checkup-date-input" placeholder="e.g. June 15, 2026 or Tomorrow" />
+                    </div>
+                </div>
+                
+                <!-- Profile Tab -->
+                <div class="tab-pane" id="tab-profile" style="display: none;">
+                    <p class="tab-desc">Complete your profile details to calculate setup percentage.</p>
+                    <div class="form-group">
+                        <label for="profile-age">Age</label>
+                        <input type="number" id="profile-age" placeholder="e.g. 25" min="1" max="120" />
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-gender">Gender</label>
+                        <select id="profile-gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-blood">Blood Group</label>
+                        <input type="text" id="profile-blood" placeholder="e.g. O+, A-" />
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-height">Height (cm)</label>
+                        <input type="number" id="profile-height" placeholder="e.g. 175" min="30" max="300" />
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-weight">Weight (kg)</label>
+                        <input type="number" id="profile-weight" placeholder="e.g. 70" min="1" max="500" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="cancel-btn" onclick="closeHealthInsightsModal()">Cancel</button>
+                <button class="save-btn" onclick="saveHealthInsights()">Save Changes</button>
+            </div>
+        </div>
     </div>
 
     <!-- Overlay for Sidebar -->
